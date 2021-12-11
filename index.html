@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            display: flex;
+            height: 60px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        header>* {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #insta-logo {
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        #insta-logo-wrapper {
+            height: 80%;
+            display: contents;
+        }
+
+        #recherche {
+            padding: 7px 13px;
+            background: #fafafa;
+            border-radius: 3px;
+            border: 1px solid #dbdbdb;
+        }
+
+        #recherche>input {
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+        #buttons{
+            justify-content: end;
+        }
+        
+button {
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 20px;
+    background: #0095f6;
+    border: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+button.inverse {
+    color: #0095f6;
+    background: #fff;
+}
+
+        #contents {
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #profile-info {
+            width: fit-content;
+            height: min-content;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #profile-info>#info {
+            font-size: 14px;
+            font-weight: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #profile-info>#info>* {
+            padding: 10px 0;
+        }
+
+        #profile-img-wrapper {
+            padding: 10px;
+        }
+
+        #profile-img-wrapper>img {
+            height: 200px;
+            clip-path: circle();
+        }
+
+        #profile-name {
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+        }
+
+        #dumb-stuff {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            flex-direction: row;
+        }
+
+        #dumb-stuff>* {
+            width: 100%;
+            padding: 2px 5px;
+        }
+
+        a {
+            color: #00376b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <div id="insta-logo-wrapper">
+                <img id="insta-logo" src="assets/insta-logo.png" />
+            </div>
+        </div>
+        <div>
+            <div id="recherche">
+                <input placeholder=" |  Rechercher" />
+            </div>
+        </div>
+        <div id="buttons">
+            <button>Se connecter</button>
+            <button class="inverse">S'inscrire</button>
+        </div>
+    </header>
+    <div id="contents">
+        <div id="profile-info">
+            <div>
+                <div id="profile-img-wrapper">
+                    <img src="assets/profile.jpg" draggable="false" />
+                </div>
+            </div>
+            <div id="info">
+                <div id="profile-name">RiRi Ford&nbsp;&nbsp;<button id="sabonner">S'abonner</button></div>
+                <div id="dumb-stuff">
+                    <div><b>199</b>&nbsp;publications</div>
+                    <div><b>199</b>&nbsp;abonnés</div>
+                    <div><b>199</b>&nbsp;abonnements</div>
+                </div>
+                <div id="insta-biography"><b>President of the Ford Motor Company</b><br>I am an allien from planet
+                    XB-293E6
+                    please bow down to me<br><a
+                        href="https://joachimlapl.github.io/projets_NSI/jeu/flying_robot_Physics.html">henryford.git/hackPC.exe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script></script>
+</body>
+
+</html>
