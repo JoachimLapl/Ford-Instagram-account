@@ -302,38 +302,6 @@
                         </svg>&nbsp;
                         IDENTIFIED
                     </div>
-                    <script>
-                        var selected = 0;
-                        const [line, svg_buttons, selector] = ['#show-case', '#photo-buttons', '#photo-class-selector'].map($);
-                        const X1 = () => {
-                            line.x1.baseVal.value = line.x1.animVal.value - (line.x1.animVal.value - line.wantedX1) * .15
-                            if (Math.abs(line.x1.baseVal.value - line.wantedX1) > .5) requestAnimationFrame(X1)
-                        }
-                        const X2 = () => {
-                            line.x2.baseVal.value = line.x2.animVal.value - (line.x2.animVal.value - line.wantedX2) * .15
-                            if (Math.abs(line.x2.baseVal.value - line.wantedX2) > .01) requestAnimationFrame(X2)
-                        }
-                        function drawLine() {
-                            const rect = selector.children[selected].getBoundingClientRect();
-                            const rect1 = svg_buttons.getBoundingClientRect();
-                            line.wantedX1 = (rect.x - rect1.x) / rect1.width * 100 - .5
-                            line.wantedX2 = (rect.x + rect.width - rect1.x) / rect1.width * 100 + .5
-                            X1();
-                            X2();
-                        }
-                        [...selector.children].forEach((e, i) => {
-                            e.selectionIndex = i;
-                            e.onclick = ({ target }) => {
-                                while (!target.hasAttribute('focusable')) target = target.parentElement;
-                                selector.children[selected].style.color = "#8e8e8e";
-                                selected = target.selectionIndex;
-                                selector.children[selected].style.color = "#262626";
-                                [...$('#photos-list').children].forEach(c => { c.style.display = c.classList.contains('c' + selected) ? 'unset' : 'none' })
-                                drawLine();
-                            }
-                        })
-                        onload = onresize = drawLine;
-                    </script>
                 </div><br>
                 <div id="photos-list">
                     <div class="c0 c1">
@@ -351,11 +319,11 @@
                     <div class="c0">
                         <div style="background-image: url('assets/img5.jpg')"></div>
                     </div>
-                    <div class="c0">
-                        <div style="background-image: url('assets/img6.jpg')"></div>
+                    <div class="c2">
+                        <div style="background-image: url('assets/img6.gif')"></div>
                     </div>
-                    <div class="c0">
-                        <div style="background-image: url('assets/img7.jpg')"></div>
+                    <div class="c2">
+                        <div style="background-image: url('assets/img7.gif')"></div>
                     </div>
                     <div class="c2">
                         <div style="background-image: url('assets/img8.gif')"></div>
@@ -364,6 +332,39 @@
             </div>
         </div>
     </div>
+    <script>
+        var selected = 0;
+        [...$('#photos-list').children].forEach(c => { c.style.display = c.classList.contains('c' + selected) ? 'unset' : 'none' })
+        const [line, svg_buttons, selector] = ['#show-case', '#photo-buttons', '#photo-class-selector'].map($);
+        const X1 = () => {
+            line.x1.baseVal.value = line.x1.animVal.value - (line.x1.animVal.value - line.wantedX1) * .15
+            if (Math.abs(line.x1.baseVal.value - line.wantedX1) > .5) requestAnimationFrame(X1)
+        }
+        const X2 = () => {
+            line.x2.baseVal.value = line.x2.animVal.value - (line.x2.animVal.value - line.wantedX2) * .15
+            if (Math.abs(line.x2.baseVal.value - line.wantedX2) > .01) requestAnimationFrame(X2)
+        }
+        function drawLine() {
+            const rect = selector.children[selected].getBoundingClientRect();
+            const rect1 = svg_buttons.getBoundingClientRect();
+            line.wantedX1 = (rect.x - rect1.x) / rect1.width * 100 - .5
+            line.wantedX2 = (rect.x + rect.width - rect1.x) / rect1.width * 100 + .5
+            X1();
+            X2();
+        }
+        [...selector.children].forEach((e, i) => {
+            e.selectionIndex = i;
+            e.onclick = ({ target }) => {
+                while (!target.hasAttribute('focusable')) target = target.parentElement;
+                selector.children[selected].style.color = "#8e8e8e";
+                selected = target.selectionIndex;
+                selector.children[selected].style.color = "#262626";
+                [...$('#photos-list').children].forEach(c => { c.style.display = c.classList.contains('c' + selected) ? 'unset' : 'none' })
+                drawLine();
+            }
+        })
+        onload = onresize = drawLine;
+    </script>
     <div id="dialog-box">
         It seems <b>@RiRi_Ford</b> hasn't been online since April the 7th 1947<br> Please inform us if this is a
         mistake.
