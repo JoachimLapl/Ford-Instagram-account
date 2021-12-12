@@ -77,6 +77,7 @@
             height: min-content;
             display: flex;
             flex-direction: row;
+            margin: auto;
         }
 
         #profile-info>#info {
@@ -163,6 +164,16 @@
         script {
             display: none !important;
         }
+
+        #photos-list {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+        }
+
+        #photos-list>* {
+            height: 40vmin;
+            width: 40vmin;
+        }
     </style>
 
     <script>const $ = s => document.querySelector(s);</script>
@@ -211,7 +222,6 @@
             <div id="photos">
                 <svg viewBox="0 0 100 .1" id="photo-buttons" xmlns="https://www.w3.org/2000/svg">
                     <line x1=0 x2=50 stroke=#000 id="show-case" />
-                    <!-- <rect height="52" x="0" y="1" width="746" fill="#fafafa"> -->
                 </svg>
                 <div id="photo-class-selector">
                     <div style="color: #262626" focusable>
@@ -249,11 +259,23 @@
                     <script>
                         var selected = 0;
                         const [line, svg_buttons, selector] = ['#show-case', '#photo-buttons', '#photo-class-selector'].map($);
+                        const X1 = () => {
+                            line.x1.baseVal.value = line.x1.animVal.value - (line.x1.animVal.value - line.wantedX1) * .1
+                            if (Math.abs(line.x1.baseVal.value-line.wantedX1)>.5) requestAnimationFrame(X1)
+                        }
+                        const X2 = () => {
+                            line.x2.baseVal.value = line.x2.animVal.value - (line.x2.animVal.value - line.wantedX2) * .1
+                            if (Math.abs(line.x2.baseVal.value-line.wantedX2)>.01) requestAnimationFrame(X2)
+                        }
                         function drawLine() {
                             const rect = selector.children[selected].getBoundingClientRect();
                             const rect1 = svg_buttons.getBoundingClientRect();
-                            line.x1.baseVal.value = (rect.x - rect1.x) / rect1.width * 100
-                            line.x2.baseVal.value = (rect.x + rect.width - rect1.x) / rect1.width * 100
+                            line.wantedX1 = (rect.x - rect1.x) / rect1.width * 100 - .5
+                            line.wantedX2 = (rect.x + rect.width - rect1.x) / rect1.width * 100 +.5
+                            X1();
+                            X2();
+                            // line.x1.baseVal.value = (rect.x - rect1.x) / rect1.width * 100
+                            // line.x2.baseVal.value = (rect.x + rect.width - rect1.x) / rect1.width * 100
                         }
                         [...selector.children].forEach((e, i) => {
                             e.selectionIndex = i;
@@ -267,6 +289,16 @@
                         })
                         onload = onresize = drawLine;
                     </script>
+                </div>
+                <div id="photos-list">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </div>
