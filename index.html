@@ -197,7 +197,7 @@
         }
 
         #dialog-box {
-            position: absolute;
+            position: fixed;
             top: 0;
             margin: 1vh calc(25vw - 12.5px);
             width: 50vw;
@@ -328,36 +328,37 @@
                                 selector.children[selected].style.color = "#8e8e8e";
                                 selected = target.selectionIndex;
                                 selector.children[selected].style.color = "#262626";
+                                [...$('#photos-list').children].forEach(c => { c.style.display = c.classList.contains('c' + selected) ? 'unset' : 'none' })
                                 drawLine();
                             }
                         })
                         onload = onresize = drawLine;
                     </script>
-                </div>
+                </div><br>
                 <div id="photos-list">
-                    <div>
+                    <div class="c0 c1">
                         <div style="background-image: url('assets/img1.jpg')"></div>
                     </div>
-                    <div>
+                    <div class="c0 c1">
                         <div style="background-image: url('assets/img2.jpg')"></div>
                     </div>
-                    <div>
+                    <div class="c0">
                         <div style="background-image: url('assets/img3.jpg')"></div>
                     </div>
-                    <div>
+                    <div class="c0 c1">
                         <div style="background-image: url('assets/img4.jpg')"></div>
                     </div>
-                    <div>
+                    <div class="c0">
                         <div style="background-image: url('assets/img5.jpg')"></div>
                     </div>
-                    <div>
+                    <div class="c0">
                         <div style="background-image: url('assets/img6.jpg')"></div>
                     </div>
-                    <div>
+                    <div class="c0">
                         <div style="background-image: url('assets/img7.jpg')"></div>
                     </div>
-                    <div>
-                        <div style="background-image: url('assets/img8.jpg')"></div>
+                    <div class="c2">
+                        <div style="background-image: url('assets/img8.gif')"></div>
                     </div>
                 </div>
             </div>
