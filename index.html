@@ -46,24 +46,24 @@
             outline: none;
         }
 
-        #buttons{
+        #buttons {
             justify-content: end;
         }
-        
-button {
-    color: #fff;
-    border-radius: 4px;
-    padding: 5px 20px;
-    background: #0095f6;
-    border: none;
-    user-select: none;
-    cursor: pointer;
-}
 
-button.inverse {
-    color: #0095f6;
-    background: #fff;
-}
+        button {
+            color: #fff;
+            border-radius: 4px;
+            padding: 5px 20px;
+            background: #0095f6;
+            border: none;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        button.inverse {
+            color: #0095f6;
+            background: #fff;
+        }
 
         #contents {
             background: #fafafa;
@@ -123,7 +123,49 @@ button.inverse {
             text-decoration: none;
             font-weight: bold;
         }
+
+        #photo-buttons {
+            background: #dbdbdb;
+            width: 100%;
+        }
+
+        #wrapper {
+            width: min-width;
+            margin: auto;
+        }
+
+        #photo-class-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        #photo-class-selector>* {
+            color: #8e8e8e;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        #photo-class-selector>*>svg {
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+            height: 12px;
+            width: 12px;
+        }
+
+        script {
+            display: none !important;
+        }
     </style>
+
+    <script>const $ = s => document.querySelector(s);</script>
 </head>
 
 <body>
@@ -144,29 +186,91 @@ button.inverse {
         </div>
     </header>
     <div id="contents">
-        <div id="profile-info">
-            <div>
-                <div id="profile-img-wrapper">
-                    <img src="assets/profile.jpg" draggable="false" />
+        <div id="wrapper">
+            <div id="profile-info">
+                <div>
+                    <div id="profile-img-wrapper">
+                        <img src="assets/profile.jpg" draggable="false" />
+                    </div>
+                </div>
+                <div id="info">
+                    <div id="profile-name">RiRi Ford&nbsp;&nbsp;<button id="sabonner">S'abonner</button></div>
+                    <div id="dumb-stuff">
+                        <div><b>199</b>&nbsp;publications</div>
+                        <div><b>1.093&times;10<sup>10</sup></b>&nbsp;abonnés</div>
+                        <div><b>199</b>&nbsp;abonnements</div>
+                    </div>
+                    <div id="insta-biography"><b>President of the Ford Motor Company</b><br>I am an allien from planet
+                        XB-293E6
+                        please bow down to me<br><a
+                            href="https://joachimlapl.github.io/projets_NSI/jeu/flying_robot_Physics.html">henryford.git/hackPC.exe</a>
+                    </div>
                 </div>
             </div>
-            <div id="info">
-                <div id="profile-name">RiRi Ford&nbsp;&nbsp;<button id="sabonner">S'abonner</button></div>
-                <div id="dumb-stuff">
-                    <div><b>199</b>&nbsp;publications</div>
-                    <div><b>1.093&times;10<sup>10</sup></b>&nbsp;abonnés</div>
-                    <div><b>199</b>&nbsp;abonnements</div>
-                </div>
-                <div id="insta-biography"><b>President of the Ford Motor Company</b><br>I am an allien from planet
-                    XB-293E6
-                    please bow down to me<br><a
-                        href="https://joachimlapl.github.io/projets_NSI/jeu/flying_robot_Physics.html">henryford.git/hackPC.exe</a>
+            <div id="stories"></div>
+            <div id="photos">
+                <svg viewBox="0 0 100 .1" id="photo-buttons" xmlns="https://www.w3.org/2000/svg">
+                    <line x1=0 x2=50 stroke=#000 id="show-case" />
+                    <!-- <rect height="52" x="0" y="1" width="746" fill="#fafafa"> -->
+                </svg>
+                <div id="photo-class-selector">
+                    <div style="color: #262626" focusable>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="m 3,3 h 18 v 18 h -18 z M 9.015,3 v 18 M 14.985,3 v 18 M 3,9.015 h 18 M 3,14.985 h 18" />
+                        </svg>&nbsp;
+                        PUBLICATIONS</div>
+                    <div focusable>
+                        <svg viewBox="0 0 24 24">
+                            <line x1="2.049" x2="21.95" y1="7.002" y2="7.002" />
+                            <line x1="13.504" x2="16.362" y1="2.001" y2="7.002" />
+                            <line x1="7.207" x2="10.002" y1="2.11" y2="7.002" />
+                            <path
+                                d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552z M9.763 17.664a.908.908 0 01-.454-.787V11.63a.909.909 0 011.364-.788l4.545 2.624a.909.909 0 010 1.575l-4.545 2.624a.91.91 0 01-.91 0z" />
+                        </svg>&nbsp;
+                        R&Eacute;ELS</div>
+                    <div focusable>
+                        <svg viewBox="0 0 24 24" style="stroke:none;fill:currentColor">
+                            <path
+                                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22.5C6.2 22.5 1.5 17.8 1.5 12S6.2 1.5 12 1.5 22.5 6.2 22.5 12 17.8 22.5 12 22.5zm5-11.8l-6.8-3.9c-.5-.3-1-.3-1.5 0-.4.3-.7.7-.7 1.3v7.8c0 .5.3 1 .8 1.3.2.1.5.2.8.2s.5-.1.8-.2l6.8-3.9c.5-.3.8-.8.8-1.3s-.5-1-1-1.3zm-7.5 5.2V8.1l6.8 3.9-6.8 3.9z" />
+                        </svg>&nbsp;
+                        VID&Eacute;OS</div>
+                    <div focusable>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M10.201 3.797L12 1.997l1.799 1.8a1.59 1.59 0 001.124.465h5.259A1.818 1.818 0 0122 6.08v14.104a1.818 1.818 0 01-1.818 1.818H3.818A1.818 1.818 0 012 20.184V6.08a1.818 1.818 0 011.818-1.818h5.26a1.59 1.59 0 001.123-.465z">
+                            </path>
+                            <path
+                                d="M18.598 22.002V21.4a3.949 3.949 0 00-3.948-3.949H9.495A3.949 3.949 0 005.546 21.4v.603">
+                            </path>
+                            <circle cx="12.072" cy="11.075" r="3.556"></circle>
+                        </svg>&nbsp;
+                        IDENTIFI&Eacute;(E)</div>
+                    <script>
+                        var selected = 0;
+                        const [line, svg_buttons, selector] = ['#show-case', '#photo-buttons', '#photo-class-selector'].map($);
+                        function drawLine() {
+                            const rect = selector.children[selected].getBoundingClientRect();
+                            const rect1 = svg_buttons.getBoundingClientRect();
+                            line.x1.baseVal.value = (rect.x - rect1.x) / rect1.width * 100
+                            line.x2.baseVal.value = (rect.x + rect.width - rect1.x) / rect1.width * 100
+                        }
+                        [...selector.children].forEach((e, i) => {
+                            e.selectionIndex = i;
+                            e.onclick = ({ target }) => {
+                                while (!target.hasAttribute('focusable')) target = target.parentElement;
+                                selector.children[selected].style.color = "#8e8e8e";
+                                selected = target.selectionIndex;
+                                selector.children[selected].style.color = "#262626";
+                                drawLine();
+                            }
+                        })
+                        onload = onresize = drawLine;
+                    </script>
                 </div>
             </div>
         </div>
     </div>
-
-    <script></script>
 </body>
 
 </html>
