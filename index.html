@@ -192,8 +192,19 @@
         #photos-list>*>* {
             height: 35vmin;
             width: 35vmin;
+            margin: 2.5vmin;
             background-position: center;
             background-size: cover;
+        }
+
+        #sources-shower {
+            position: absolute;
+            pointer-events: none;
+            background: #fff;
+            padding: 0 10px;
+            border: 1px solid #0095f6;
+            border-radius: 5px;
+            font-size: 50%;
         }
 
         #dialog-box {
@@ -242,7 +253,8 @@
             <div id="profile-info">
                 <div>
                     <div id="profile-img-wrapper">
-                        <img src="assets/profile.jpg" draggable="false" />
+                        <img src="assets/profile.jpg" draggable="false"
+                            open-src="https://media2.nekropole.info/2013/07/Timehenryford-crop.jpg" />
                     </div>
                 </div>
                 <div id="info">
@@ -253,8 +265,8 @@
                         <div><b>10</b>&nbsp;following</div>
                     </div>
                     <div id="insta-biography"><b>President of the Ford Motor Company</b><br>I am an allien from planet
-                        XB-293E6
-                        please bow down to me<br><a target="*/blank"
+                        XB-293E6 please bow down to me<br>
+                        <a target="*/blank"
                             href="https://joachimlapl.github.io/projets_NSI/jeu/flying_robot_Physics.html">henryford.git/hackPC.exe</a>
                         <br>Followed by <b>Harrison Ford</b>
                     </div>
@@ -305,36 +317,49 @@
                 </div><br>
                 <div id="photos-list">
                     <div class="c0 c3">
-                        <div style="background-image: url('assets/img1.jpg')"></div>
+                        <div style="background-image: url('assets/img1.jpg')"
+                            open-src="https://www.thefamouspeople.com/profiles/thumbs/henry-ford-22.jpg"></div>
                     </div>
                     <div class="c0 c3">
-                        <div style="background-image: url('assets/img2.jpg')"></div>
+                        <div style="background-image: url('assets/img2.jpg')"
+                            open-src="https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_700/MTcxNDE1NTUwNjkyNDM1OTUw/henry-ford-gettyimages-89857187.webp">
+                        </div>
                     </div>
                     <div class="c0">
-                        <div style="background-image: url('assets/img3.jpg')"></div>
+                        <div style="background-image: url('assets/img3.jpg')"
+                            open-src="https://geekinc.ca/wp-content/uploads/2020/01/112_0807_03z-ford_model_t-assembly_line-750x445.jpeg">
+                        </div>
                     </div>
                     <div class="c0 c3">
-                        <div style="background-image: url('assets/img4.jpg')"></div>
+                        <div style="background-image: url('assets/img4.jpg')"
+                            open-src="https://www.google.fr/url?sa=i&url=https%3A%2F%2Fwww.history.com%2Ftopics%2Finventions%2Fhenry-ford&psig=AOvVaw1uN845AYPOiElZHlm3Iv9H&ust=1639582194135000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPiJiufN4_QCFQAAAAAdAAAAABAD">
+                        </div>
                     </div>
                     <div class="c0">
-                        <div style="background-image: url('assets/img5.jpg')"></div>
+                        <div style="background-image: url('assets/img5.jpg')"
+                            open-src="https://miro.medium.com/max/946/0*DsB-jeyf923PZ0s1.jpg"></div>
                     </div>
                     <div class="c2">
-                        <div style="background-image: url('assets/img6.gif')"></div>
+                        <div style="background-image: url('assets/img6.gif')"
+                            open-src="https://gfycat.com/fr/obedientniftyblackbear"></div>
                     </div>
                     <div class="c2">
-                        <div style="background-image: url('assets/img7.gif')"></div>
+                        <div style="background-image: url('assets/img7.gif')"
+                            open-src="https://centuriesofsound.files.wordpress.com/2018/11/ford-model-t.gif"></div>
                     </div>
                     <div class="c2">
-                        <div style="background-image: url('assets/img8.gif')"></div>
+                        <div style="background-image: url('assets/img8.gif')"
+                            open-src="https://www.youtube.com/watch?v=DmXH0z8uH_w"></div>
                     </div>
                     <div class="c0 c1 c3">
-                        <div style="background-image: url('assets/img9.jpg')"></div>
+                        <div style="background-image: url('assets/img9.jpg')"
+                            open-src="https://miro.medium.com/max/724/0*E1CrdiyyKCvaAKh9.jpg"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="sources-shower">hello world</div>
     <script>
         var selected = 0;
         [...$('#photos-list').children].forEach(c => { c.style.display = c.classList.contains('c' + selected) ? 'unset' : 'none' })
@@ -367,6 +392,38 @@
             }
         })
         onload = onresize = drawLine;
+
+        const sources_shower = $('#sources-shower');
+        sources_shower.opacity = 0;
+        sources_shower.timeout = null;
+        [...document.querySelectorAll('[open-src]')].forEach(c => {
+            c.src = c.getAttribute('open-src');
+            const closeUrlShower = () => {
+                sources_shower.style.opacity = sources_shower.opacity -= sources_shower.opacity * .05;
+                if (sources_shower.opacity > .01) sources_shower.timeout = setTimeout(closeUrlShower, 5); else sources_shower.style.opacity = 0;
+            }
+            const openUrlShower = () => {
+                sources_shower.timeout && clearTimeout(sources_shower.timeout)
+                sources_shower.style.opacity = sources_shower.opacity = 1
+                sources_shower.timeout = setTimeout(closeUrlShower, 1000)
+            };
+            c.onmousemove = async function ({ x, y }) {
+                sources_shower.innerText = this.src;
+                sources_shower.viewMidWidth = -await new Promise((resolve, reject) => {
+                    requestAnimationFrame(() => {
+                        resolve(sources_shower.getBoundingClientRect().width / 2);
+                    });
+                });
+                console.log(sources_shower.viewMidWidth)
+                sources_shower.style.left = x + sources_shower.viewMidWidth + scrollX + 'px';
+                sources_shower.style.top = y + scrollY + 'px';
+                openUrlShower()
+            }
+            c.onmouseout = function () {
+                sources_shower.timeout && clearTimeout(sources_shower.timeout);
+                closeUrlShower();
+            }
+        })
     </script>
     <div id="dialog-box">
         It seems <b>@RiRi_Ford</b> hasn't been online since April the 7th 1947<br> Please inform us if this is a
@@ -393,7 +450,7 @@
                 if (top < -1) requestAnimationFrame(f); else dialog.style.top = '0';
             })()
         };
-        async function closeDialogBox() {
+        function closeDialogBox() {
             const rect = dialog.getBoundingClientRect()
             const aimed_top = -rect.height - 100;
             var top = rect.top;
